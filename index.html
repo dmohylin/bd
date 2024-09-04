@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: 'Leckerli One', cursive;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @media screen and (max-width: 600px) {
+        svg {
+          width: 700px !important;
+          overflow: hidden;
+        }
+
+        * {
+          overflow: hidden;
+        }
+
+        .title {
+          font-size: 6vh !important;
+          padding-top: 20px !important;
+          padding-bottom: 45px !important;
+        }
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main {
+        display: flex;
+        justify-content: center;
+        width: auto;
+        height: auto;
+        position: relative;
+        top: -22vh;
+      }
+
+      .shadow {
+        cursor: crosshair;
+        filter: drop-shadow(-1px 1px 3px rgb(0 0 0 / 0.4));
+      }
+
+      .title {
+        font-size: 7vh;
+        text-align: center;
+        padding-top: 30px;
+        color: rgb(247, 49, 49);
+        text-shadow: 1px 1px 1px rgb(50, 50, 50);
+      }
+
+      * {
+        transition: all 15s;
+      }
+    </style>
+  </head>
+  <body>
+    <script defer type="module">
+      const innerElement = document.querySelector('#outer');
+      const outerElement = document.querySelector('#inner');
+
+      const randomColor = (base) => Math.ceil(Math.random() * base);
+
+      setTimeout(() => {
+        const topInnerColors = [randomColor(235), randomColor(225), randomColor(240)];
+        const topOuterColors = [
+          topInnerColors[0] + 20,
+          topInnerColors[1] + 30,
+          topInnerColors[2] + 15,
+        ];
+
+        const innerColor = `rgb(${topInnerColors.toString()})`;
+        const outerColor = `rgb(${topOuterColors.toString()})`;
+
+        innerElement.style.stopColor = innerColor;
+        outerElement.style.stopColor = outerColor;
+
+        setInterval(() => {
+          const topInnerColors = [randomColor(235), randomColor(225), randomColor(240)];
+          const topOuterColors = [
+            topInnerColors[0] + 20,
+            topInnerColors[1] + 30,
+            topInnerColors[2] + 15,
+          ];
+
+          const innerColor = `rgb(${topInnerColors.toString()})`;
+          const outerColor = `rgb(${topOuterColors.toString()})`;
+
+          innerElement.style.stopColor = innerColor;
+          outerElement.style.stopColor = outerColor;
+        }, 15_000);
+      }, 3000);
+    </script>
+    <main>
+      <div class="title">A flower for THE FLOWER</div>
+      <div class="main">
+        <svg width="900" height="auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <!-- Gradient Definitions -->
+          <defs>
+            <radialGradient id="outerGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+              <stop offset="0%" style="stop-color: rgb(20, 20, 20); stop-opacity: 1" />
+              <stop
+                offset="100%"
+                id="outer"
+                style="stop-color: rgb(250, 90, 84); stop-opacity: 1"
+              />
+            </radialGradient>
+            <radialGradient id="innerGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+              <stop offset="0%" style="stop-color: rgba(20, 20, 20); stop-opacity: 1" />
+              <stop
+                offset="100%"
+                id="inner"
+                style="stop-color: rgb(230, 60, 69); stop-opacity: 1"
+              />
+            </radialGradient>
+          </defs>
+
+          <!-- Outer petals -->
+          <path
+            d="M100,60 Q120,45 140,60 Q155,80 140,100 Q120,120 100,100 Q80,120 60,100 Q45,80 60,60 Q80,45 100,60"
+            fill="url(#outerGradient)"
+            class="shadow"
+          />
+          <path
+            d="M100,80 Q115,65 130,80 Q140,95 130,110 Q115,125 100,110 Q85,125 70,110 Q60,95 70,80 Q85,65 100,80"
+            fill="url(#outerGradient)"
+            class="shadow"
+          />
+
+          <!-- Inner petals -->
+          <path
+            d="M100,90 Q110,80 120,90 Q130,100 120,110 Q110,120 100,110 Q90,120 80,110 Q70,100 80,90 Q90,80 100,90"
+            fill="url(#innerGradient)"
+          />
+          <path
+            id="one"
+            d="M100,100 Q105,95 110,100 Q115,105 110,110 Q105,115 100,110 Q95,115 90,110 Q85,105 90,100 Q95,95 100,100"
+            fill="url(#innerGradient)"
+          />
+
+          <!-- Center -->
+
+          <!-- Stem -->
+          <rect x="95" y="110" width="10" height="70" fill="green" />
+          <!-- <circle cx="100" id="one" cy="110" r="7" fill="darkred" /> -->
+          <use xlink:href="#one" />
+
+          <!-- Thorns -->
+          <path d="M92,150 L100,140 L108,150 Z" fill="darkgreen" />
+          <path d="M92,170 L100,160 L108,170 Z" fill="darkgreen" />
+
+          <!-- Leaves connected to stem -->
+          <path d="M95,140 Q80,125 60,140 Q50,150 60,160 Q80,170 95,155 Z" fill="green" />
+          <path d="M105,140 Q120,125 140,140 Q150,150 140,160 Q120,170 105,155 Z" fill="green" />
+        </svg>
+      </div>
+    </main>
+  </body>
+</html>
